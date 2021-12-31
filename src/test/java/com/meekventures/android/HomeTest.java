@@ -1,10 +1,10 @@
 package com.meekventures.android;
 
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidElement;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -13,6 +13,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -23,6 +24,7 @@ public class HomeTest {
     private static AppiumDriver driver;
     private static String emailAddress = "rajmentor-KattieSchuppeGladyce.Lind99@gmail.com";
     private static String password = "test123";
+    PhoneNumberUtil phoneNumberUtil = PhoneNumberUtil.getInstance();
 
     @BeforeAll
     static void setUp() {
@@ -50,7 +52,6 @@ public class HomeTest {
     }
 
     @Test
-    @Disabled
     public void home_screen_tests() {
         WebElement email = driver.findElement(By.id("edtEmail"));
         assertThat(email.isDisplayed()).as("email input should be displayed").isTrue();
@@ -97,7 +98,6 @@ public class HomeTest {
         driver.findElement(By.id("imgBack")).click();
     }
     @Test
-    @Disabled
     public void student_register() {
         WebElement email = driver.findElement(By.id("edtEmail"));
         assertThat(email.isDisplayed()).as("email input should be displayed").isTrue();
@@ -184,8 +184,11 @@ public class HomeTest {
         assertThat(countryNames.size()).as("University list should be displayed").isGreaterThan(0);
         ((AndroidElement) countryNames.get(0)).click();
 
+        Random random = new Random();
+
+        String mobileNumber = "1234567" + random.nextInt(999999);
         WebElement contact = driver.findElement(By.id("edtPhone"));
-        contact.sendKeys("7643437123");
+        contact.sendKeys(mobileNumber);
 
         WebElement emailAddress = driver.findElement(By.id("edtEmail"));
         assertThat(emailAddress.isDisplayed()).as("Email input should be displayed").isTrue();
