@@ -47,20 +47,19 @@ public class SimpleTest {
 
 
     @Test
-    @Disabled
     public void test() {
-        WebElement email = driver.findElement(By.id("com.meekventures.meek:id/edtEmail"));
+        WebElement email = driver.findElement(By.id("edtEmail"));
         email.click();
         email.sendKeys(this.emailAddress);
 
-        WebElement password = driver.findElement(By.id("com.meekventures.meek:id/edtPassword"));
+        WebElement password = driver.findElement(By.id("edtPassword"));
         password.click();
         password.sendKeys(this.password);
 
-        WebElement keepMeLoggedIn = driver.findElement(By.id("com.meekventures.meek:id/checkBoxLogin"));
+        WebElement keepMeLoggedIn = driver.findElement(By.id("checkBoxLogin"));
         keepMeLoggedIn.click();
 
-        WebElement loginButton = driver.findElement(By.partialLinkText("Login"));
+        WebElement loginButton = driver.findElement(By.id("Login"));
         loginButton.click();
     }
 }
