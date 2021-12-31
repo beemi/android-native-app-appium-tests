@@ -14,11 +14,11 @@ import java.net.URL;
 import static org.assertj.core.api.Assertions.*;
 
 
-public class SimpleTest {
+public class HomeTest {
 
     private static AppiumDriver driver;
-    private String emailAddress = "rajmentor-KattieSchuppeGladyce.Lind99@gmail.com";
-    private String password = "test123";
+    private static String emailAddress = "rajmentor-KattieSchuppeGladyce.Lind99@gmail.com";
+    private static String password = "test123";
 
     @BeforeAll
     static void setUp() {
@@ -45,28 +45,24 @@ public class SimpleTest {
         }
     }
 
-
     @Test
     public void test() throws InterruptedException {
         WebElement email = driver.findElement(By.id("edtEmail"));
-        assertThat(email.isDisplayed()).isTrue();
-        email.click();
-        email.sendKeys(this.emailAddress);
+        assertThat(email.isDisplayed()).as("email input should be displayed").isTrue();
+        email.sendKeys(emailAddress);
 
-        WebElement password = driver.findElement(By.id("edtPassword"));
-        password.click();
-        password.sendKeys(this.password);
+        WebElement passwordInput = driver.findElement(By.id("edtPassword"));
+        passwordInput.sendKeys(password);
+        driver.hideKeyboard();
 
         WebElement keepMeLoggedIn = driver.findElement(By.id("checkBoxLogin"));
         keepMeLoggedIn.click();
-        driver.hideKeyboard();
 
         WebElement loginButton = driver.findElement(By.xpath("//*[@text='Login']"));
         loginButton.click();
 
-        Thread.sleep(30000);
         WebElement menuStartups = driver.findElement(By.id("startupConstraint"));
-        assertThat(menuStartups.isDisplayed()).isTrue();
+        assertThat(menuStartups.isDisplayed()).as("Login is not successful").isTrue();
         menuStartups.click();
 
         driver.findElement(By.id("topUsersLay")).isDisplayed();
@@ -87,13 +83,12 @@ public class SimpleTest {
 
         WebElement menuEvents = driver.findElement(By.id("eventsConstraint"));
         menuEvents.click();
-        driver.findElement(By.id("topUsersLay")).isDisplayed();
+        driver.findElement(By.id("relMessage")).isDisplayed();
         driver.findElement(By.id("imgBack")).click();
-
 
         WebElement menuSocieties = driver.findElement(By.id("societiesConstraint"));
         menuSocieties.click();
-        driver.findElement(By.id("topUsersLay")).isDisplayed();
+        driver.findElement(By.id("imgAddSociety")).isDisplayed();
         driver.findElement(By.id("imgBack")).click();
     }
 }
