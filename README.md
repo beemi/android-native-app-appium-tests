@@ -1,5 +1,11 @@
 #Android-appium-tests
 
-[//]: # ( About: this is a collection of tests for the Android appium server
-[//]: # ( Language: English
-[//]: # ( Path: README.md
+# Inspect elements of the app
+
+![Alt text](docs/img.png)
+
+![Alt text](docs/img_3.png)
+
+# Check appium settings
+
+![Alt text](docs/img_2.png)

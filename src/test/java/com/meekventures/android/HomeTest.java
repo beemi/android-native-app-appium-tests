@@ -1,6 +1,5 @@
 package com.meekventures.android;
 
-import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidElement;
 import org.junit.jupiter.api.AfterAll;
@@ -22,9 +21,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class HomeTest {
 
     private static AppiumDriver driver;
+    private static String APK_PATH = System.getProperty("user.dir")+"/src/test/resources/apps/beta/eaa7eddf-b305-4151-b298-cb7ca5079fb1.apk";
+    private static String APP_PACKAGE = "com.meekventures.meek";
     private static String emailAddress = "rajmentor-KattieSchuppeGladyce.Lind99@gmail.com";
     private static String password = "test123";
-    PhoneNumberUtil phoneNumberUtil = PhoneNumberUtil.getInstance();
 
     @BeforeAll
     static void setUp() {
@@ -32,8 +32,8 @@ public class HomeTest {
         desiredCapabilities.setCapability("platformName", "Android");
         desiredCapabilities.setCapability("deviceName", "Pixel XL API 30");
         desiredCapabilities.setCapability("automationName", "UiAutomator2");
-        desiredCapabilities.setCapability("app", "/Users/R.Beemireddy/Documents/projects/personal/meek-android-appium-tests/src/test/resources/apps/beta/eaa7eddf-b305-4151-b298-cb7ca5079fb1.apk");
-        desiredCapabilities.setCapability("appPackage", "com.meekventures.meek");
+        desiredCapabilities.setCapability("app", APK_PATH);
+        desiredCapabilities.setCapability("appPackage", APP_PACKAGE);
 
         try {
             driver = new AppiumDriver(new URL("http://0.0.0.0:4723/wd/hub"), desiredCapabilities);
