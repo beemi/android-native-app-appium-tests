@@ -51,7 +51,7 @@ public class HomeTest {
 
     @Test
     @Disabled
-    public void home_screen_tests() throws InterruptedException {
+    public void home_screen_tests() {
         WebElement email = driver.findElement(By.id("edtEmail"));
         assertThat(email.isDisplayed()).as("email input should be displayed").isTrue();
         email.sendKeys(emailAddress);
@@ -97,7 +97,7 @@ public class HomeTest {
         driver.findElement(By.id("imgBack")).click();
     }
     @Test
-    public void student_register() throws InterruptedException {
+    public void student_register() {
         WebElement email = driver.findElement(By.id("edtEmail"));
         assertThat(email.isDisplayed()).as("email input should be displayed").isTrue();
         WebElement joinNow = driver.findElement(By.xpath("//*[@text='Join Now!']"));
