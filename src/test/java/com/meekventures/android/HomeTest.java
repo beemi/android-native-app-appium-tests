@@ -3,6 +3,7 @@ package com.meekventures.android;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidElement;
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -21,16 +22,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class HomeTest {
 
     private static AppiumDriver driver;
-    private static String APK_PATH = System.getProperty("user.dir")+"/src/test/resources/apps/beta/eaa7eddf-b305-4151-b298-cb7ca5079fb1.apk";
-    private static String APP_PACKAGE = "com.meekventures.meek";
+    private static final String APK_PATH = System.getProperty("user.dir") + "/src/test/resources/apps/beta/eaa7eddf-b305-4151-b298-cb7ca5079fb1.apk";
+    private static final String APP_PACKAGE = "com.meekventures.meek";
+    private static final String DEVICE_NAME = "Pixel XL API 30";
+    private static final String PLATFORM_NAME = "Android";
     private static String emailAddress = "rajmentor-KattieSchuppeGladyce.Lind99@gmail.com";
     private static String password = "test123";
 
     @BeforeAll
     static void setUp() {
+
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-        desiredCapabilities.setCapability("platformName", "Android");
-        desiredCapabilities.setCapability("deviceName", "Pixel XL API 30");
+        desiredCapabilities.setCapability("platformName", PLATFORM_NAME);
+        desiredCapabilities.setCapability("deviceName", DEVICE_NAME);
         desiredCapabilities.setCapability("automationName", "UiAutomator2");
         desiredCapabilities.setCapability("app", APK_PATH);
         desiredCapabilities.setCapability("appPackage", APP_PACKAGE);
@@ -40,8 +44,12 @@ public class HomeTest {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-
         driver.manage().timeouts().implicitlyWait(60, java.util.concurrent.TimeUnit.SECONDS);
+    }
+
+    @AfterEach
+    private void resetAppAfter() {
+        driver.resetApp();
     }
 
     @AfterAll
@@ -97,6 +105,7 @@ public class HomeTest {
         driver.findElement(By.id("imgAddSociety")).isDisplayed();
         driver.findElement(By.id("imgBack")).click();
     }
+
     @Test
     public void student_register() {
         WebElement email = driver.findElement(By.id("edtEmail"));
@@ -120,7 +129,7 @@ public class HomeTest {
 
         WebElement emailAddress = driver.findElement(By.id("edtEmail"));
         assertThat(emailAddress.isDisplayed()).as("Email input should be displayed").isTrue();
-        emailAddress.sendKeys("test-" + (UUID.randomUUID().toString().replaceAll("-","")) + "@example.com");
+        emailAddress.sendKeys("test-" + (UUID.randomUUID().toString().replaceAll("-", "")) + "@example.com");
         driver.hideKeyboard();
 
         WebElement password = driver.findElement(By.id("edtPassword"));
@@ -192,7 +201,7 @@ public class HomeTest {
 
         WebElement emailAddress = driver.findElement(By.id("edtEmail"));
         assertThat(emailAddress.isDisplayed()).as("Email input should be displayed").isTrue();
-        emailAddress.sendKeys("test-" + (UUID.randomUUID().toString().replaceAll("-","")) + "@example.com");
+        emailAddress.sendKeys("test-" + (UUID.randomUUID().toString().replaceAll("-", "")) + "@example.com");
         driver.hideKeyboard();
 
         WebElement password = driver.findElement(By.id("edtPassword"));
