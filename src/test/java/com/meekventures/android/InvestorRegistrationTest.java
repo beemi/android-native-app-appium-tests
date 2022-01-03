@@ -14,7 +14,7 @@ import java.util.UUID;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Log
-public class InvestorTest extends BaseAndroidTest{
+public class InvestorRegistrationTest extends BaseAndroidTest{
 
     @BeforeEach()
     public void resetAppBefore() {

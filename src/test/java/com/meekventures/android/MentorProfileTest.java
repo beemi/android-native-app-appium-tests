@@ -1,9 +1,11 @@
 package com.meekventures.android;
 
+import io.appium.java_client.android.AndroidElement;
 import lombok.extern.java.Log;
 import lombok.val;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -17,7 +19,7 @@ public class MentorProfileTest extends BaseAndroidTest {
     private static final String emailAddress = "rajmentor-KattieSchuppeGladyce.Lind99@gmail.com";
     private static final String password = "test123";
 
-    WebDriverWait wait = new WebDriverWait(driver, 10);
+    WebDriverWait wait = new WebDriverWait(driver, 30);
 
     @BeforeEach()
     public void resetAppBefore() {
@@ -52,6 +54,7 @@ public class MentorProfileTest extends BaseAndroidTest {
     }
 
     @Test
+    @Disabled
     public void mentor_profile_update_test() {
 
         val profile = driver.findElement(By.id("profile"));
@@ -124,6 +127,7 @@ public class MentorProfileTest extends BaseAndroidTest {
     }
 
     @Test
+    @Disabled
     public void mentor_complete_now_test() {
 
         val completeNow = driver.findElement(By.id("completeProfile"));
@@ -180,6 +184,57 @@ public class MentorProfileTest extends BaseAndroidTest {
         log.info("mentor button is displayed and clicked");
         assertThat(driver.findElementById("tvEditProfile").isDisplayed()).as("edit profile should be displayed").isTrue();
         log.info("edit profile is displayed");
+    }
 
+    @Test
+    public void mentor_apply_job_test() {
+        val jobMenu = driver.findElement(By.id("job"));
+        assertThat(jobMenu.isDisplayed()).as("job menu should be displayed").isTrue();
+        jobMenu.click();
+        log.info("job menu is displayed and clicked");
+
+        wait.until(ExpectedConditions.or(
+                ExpectedConditions.visibilityOfElementLocated(By.id("tvApply"))
+        ));
+
+        val applyButton = driver.findElementsById("tvApply");
+        assertThat(applyButton.size()).as("apply button should be displayed").isGreaterThan(1);
+        ((AndroidElement) applyButton.get(0)).click();
+        log.info("apply button is displayed and clicked");
+        wait.until(ExpectedConditions.or(
+                ExpectedConditions.visibilityOfElementLocated(By.id("edtCover"))
+        ));
+
+        val coverLetter = driver.findElementById("edtCover");
+        assertThat(coverLetter.isDisplayed()).as("cover letter should be displayed").isTrue();
+        coverLetter.sendKeys("This is a test cover letter");
+        log.info("cover letter is displayed and typed");
+        driver.hideKeyboard();
+
+        val jobApplyButton = driver.findElementById("btnApply");
+        assertThat(jobApplyButton.isDisplayed()).as("apply button should be displayed").isTrue();
+        jobApplyButton.click();
+        log.info("apply button is displayed and clicked");
+
+        wait.until(ExpectedConditions.or(
+                ExpectedConditions.visibilityOfElementLocated(By.id("btnMoreJobs"))
+        ));
+        log.info("more jobs button is displayed");
+
+        val jobApplied = driver.findElementByXPath("//*[@text='Applied Successfully!']");
+        assertThat(jobApplied.isDisplayed()).as("job applied message should be displayed").isTrue();
+        assertThat(jobApplied.getText()).as("job applied message should be displayed").isEqualTo("Applied Successfully!");
+
+        val moreJobsButton = driver.findElementById("btnMoreJobs");
+        assertThat(moreJobsButton.isDisplayed()).as("more jobs button should be displayed").isTrue();
+        moreJobsButton.click();
+
+        wait.until(ExpectedConditions.or(
+                ExpectedConditions.visibilityOfElementLocated(By.id("imgFilter"))
+        ));
+
+        val filterButton = driver.findElementById("imgFilter");
+        assertThat(filterButton.isDisplayed()).as("filter button should be displayed").isTrue();
+        log.info("filter button is displayed");
     }
 }
