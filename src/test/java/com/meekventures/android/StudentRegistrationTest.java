@@ -1,18 +1,19 @@
 package com.meekventures.android;
 
 import io.appium.java_client.android.AndroidElement;
+import lombok.extern.java.Log;
+import lombok.val;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import java.util.List;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-
+@Log
 public class StudentRegistrationTest extends BaseAndroidTest {
 
     @BeforeEach()
@@ -64,9 +65,9 @@ public class StudentRegistrationTest extends BaseAndroidTest {
         WebElement selectUniversity = driver.findElement(By.id("universitySpinner"));
         assertThat(selectUniversity.isDisplayed()).as("University input should be displayed").isTrue();
         selectUniversity.click();
-        WebElement myUniversity = driver.findElement(By.id("search_src_text"));
+        val myUniversity = driver.findElement(By.id("search_src_text"));
         myUniversity.sendKeys("Abertay University");
-        List universityList = driver.findElementsById("tv_search_list_item");
+        val universityList = driver.findElementsById("tv_search_list_item");
         assertThat(universityList.size()).as("University list should be displayed").isGreaterThan(0);
         ((AndroidElement) universityList.get(0)).click();
 

@@ -20,7 +20,7 @@ import java.util.UUID;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-public class HomeTest {
+public class HomeBasicTest {
 
     private static AndroidDriver driver;
     private static final String APK_PATH = System.getProperty("user.dir") + "/src/test/resources/apps/beta/eaa7eddf-b305-4151-b298-cb7ca5079fb1.apk";
