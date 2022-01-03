@@ -1,17 +1,20 @@
-#Android-appium-tests
+# Android-appium-tests
 
-## Run tests
+## :gear: Run tests
 
 ```shell
 gradle clean test
 ```
 
-# Inspect elements of the app
+# :gear: Inspect elements of the app
 
-![Alt text](docs/img.png)
+![Alt text](docs/img_4.png)
 
 ![Alt text](docs/img_3.png)
 
-# Check appium settings
+# :gear: Check appium settings
 
 ![Alt text](docs/img_2.png)
+
+## :e-mail: Contacts
+Owner: [beemi.raja@gmail.com](beemi.raja@gmail.com)
