@@ -5,7 +5,6 @@ import lombok.extern.java.Log;
 import lombok.val;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -54,7 +53,6 @@ public class MentorProfileTest extends BaseAndroidTest {
     }
 
     @Test
-    @Disabled
     public void mentor_profile_update_test() {
 
         val profile = driver.findElement(By.id("profile"));
@@ -127,7 +125,6 @@ public class MentorProfileTest extends BaseAndroidTest {
     }
 
     @Test
-    @Disabled
     public void mentor_complete_now_test() {
 
         val completeNow = driver.findElement(By.id("completeProfile"));
@@ -198,7 +195,7 @@ public class MentorProfileTest extends BaseAndroidTest {
         ));
 
         val applyButton = driver.findElementsById("tvApply");
-        assertThat(applyButton.size()).as("apply button should be displayed").isGreaterThan(1);
+        assertThat(applyButton.size()).as("apply button should be displayed & list of jobs should be greater than 1").isGreaterThan(1);
         ((AndroidElement) applyButton.get(0)).click();
         log.info("apply button is displayed and clicked");
         wait.until(ExpectedConditions.or(
@@ -212,7 +209,6 @@ public class MentorProfileTest extends BaseAndroidTest {
         driver.hideKeyboard();
 
         val jobApplyButton = driver.findElementById("btnApply");
-        assertThat(jobApplyButton.isDisplayed()).as("apply button should be displayed").isTrue();
         jobApplyButton.click();
         log.info("apply button is displayed and clicked");
 
