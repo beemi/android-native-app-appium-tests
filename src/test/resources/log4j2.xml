@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+    <!-- definition of appender STDOUT -->
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout
+                    pattern="%highlight{%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n}{FATAL=bright red, ERROR=red, WARN=yellow, INFO=white, DEBUG=green, TRACE=cyan}"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Logger name="com.jai.tech" level="TRACE" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Root level="TRACE">
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+    <!-- uniRest logging -->
+    <Loggers>
+        <Logger name="org.apache.http.headers" level="DEBUG" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Logger name="org.apache.http.request" level="DEBUG" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <!--        <Logger name="org.apache.http.wire" level="DEBUG" additivity="false">-->
+        <!--            <AppenderRef ref="Console"/>-->
+        <!--        </Logger>-->
+        <Root level="INFO">
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+</Configuration>

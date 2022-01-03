@@ -1,5 +1,6 @@
 package com.meekventures.android;
 
+import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.android.AndroidElement;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -8,12 +9,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-public class StudentRegistrationTest extends BaseAndroidTest {
+public class InvestorTest extends BaseAndroidTest{
 
     @BeforeEach()
     public void resetAppBefore() {
@@ -26,14 +28,14 @@ public class StudentRegistrationTest extends BaseAndroidTest {
     }
 
     @Test
-    public void student_register() {
+    public void investor_registration(){
         WebElement email = driver.findElement(By.id("edtEmail"));
         assertThat(email.isDisplayed()).as("email input should be displayed").isTrue();
         WebElement joinNow = driver.findElement(By.xpath("//*[@text='Join Now!']"));
         joinNow.click();
 
-        WebElement studentRegisterOption = driver.findElement(By.id("sign_up_as_student_image"));
-        assertThat(studentRegisterOption.isDisplayed()).as("Signup as student option displayed").isTrue();
+        WebElement studentRegisterOption = driver.findElement(By.id("sign_up_as_entrepreneur_image"));
+        assertThat(studentRegisterOption.isDisplayed()).as("Signup as Entrepreneur option displayed").isTrue();
         studentRegisterOption.click();
 
         WebElement firstName = driver.findElement(By.id("edtFirstName"));
@@ -45,6 +47,24 @@ public class StudentRegistrationTest extends BaseAndroidTest {
         assertThat(lastName.isDisplayed()).as("Last name input should be displayed").isTrue();
         lastName.sendKeys("Beemireddy");
         driver.hideKeyboard();
+
+        WebElement company = driver.findElementById("edtCompany");
+        assertThat(company.isDisplayed()).as("Company input should be displayed").isTrue();
+        company.sendKeys("Test Company");
+
+        WebElement countyCodes = driver.findElement(By.id("tvCountry"));
+        assertThat(countyCodes.isDisplayed()).as("Country Code input should be displayed").isTrue();
+        countyCodes.click();
+
+        List countryNames = driver.findElementsById("textView_countryName");
+        assertThat(countryNames.size()).as("University list should be displayed").isGreaterThan(0);
+        ((AndroidElement) countryNames.get(0)).click();
+
+        Random random = new Random();
+
+        String mobileNumber = "1234567" + random.nextInt(999999);
+        WebElement contact = driver.findElement(By.id("edtPhone"));
+        contact.sendKeys(mobileNumber);
 
         WebElement emailAddress = driver.findElement(By.id("edtEmail"));
         assertThat(emailAddress.isDisplayed()).as("Email input should be displayed").isTrue();
@@ -61,23 +81,20 @@ public class StudentRegistrationTest extends BaseAndroidTest {
         confirmPassword.sendKeys("test1212121");
         driver.hideKeyboard();
 
-        WebElement selectUniversity = driver.findElement(By.id("universitySpinner"));
-        assertThat(selectUniversity.isDisplayed()).as("University input should be displayed").isTrue();
-        selectUniversity.click();
-        WebElement myUniversity = driver.findElement(By.id("search_src_text"));
-        myUniversity.sendKeys("Abertay University");
-        List universityList = driver.findElementsById("tv_search_list_item");
-        assertThat(universityList.size()).as("University list should be displayed").isGreaterThan(0);
-        ((AndroidElement) universityList.get(0)).click();
-
         WebElement ternsAndCondition = driver.findElement(By.id("termsCondition"));
         assertThat(ternsAndCondition.isDisplayed()).as("Terms and condition input should be displayed").isTrue();
         ternsAndCondition.click();
 
+        driver.executeScript("scroll", ImmutableMap.of("direction", "down"));
         WebElement signupButton = driver.findElement(By.id("signUpNowButton"));
         assertThat(signupButton.isDisplayed()).as("Signup button should be displayed").isTrue();
         signupButton.click();
 
+//        WebElement registrationSuccess = driver.findElementById("btnMentor");
+//        assertThat(registrationSuccess.isDisplayed()).as("Registration success message should be displayed").isTrue();
+//        assertThat(driver.findElementById("tvGoHome").isDisplayed()).as("Go Back to home page option").isTrue();
+//        driver.findElement(By.id("tvGoHome")).click();
+//        assertThat(email.isDisplayed()).as("email input should be displayed").isTrue();
         WebElement registrationSuccess = driver.findElementById("confirmEmailHint");
         assertThat(registrationSuccess.isDisplayed()).as("Registration success message should be displayed").isTrue();
         assertThat(driver.findElementById("loginBtn").isDisplayed()).as("Login Now displayed").isTrue();

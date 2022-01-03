@@ -1,6 +1,6 @@
 package com.meekventures.android;
 
-import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.AndroidDriver;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -10,16 +10,13 @@ import java.net.URL;
 
 public class BaseAndroidTest {
 
-    protected static AppiumDriver driver;
+    protected static AndroidDriver driver;
     private static final String APK_PATH = System.getProperty("user.dir") + "/src/test/resources/apps/beta/eaa7eddf-b305-4151-b298-cb7ca5079fb1.apk";
     private static final String APP_PACKAGE = "com.meekventures.meek";
     private static final String DEVICE_NAME = "Pixel XL API 30";
     private static final String PLATFORM_NAME = "Android";
 
     @BeforeAll
-    /**
-     * initialization.
-     */
     public static void setUp() {
 
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
@@ -30,7 +27,7 @@ public class BaseAndroidTest {
         desiredCapabilities.setCapability("appPackage", APP_PACKAGE);
 
         try {
-            driver = new AppiumDriver(new URL("http://0.0.0.0:4723/wd/hub"), desiredCapabilities);
+            driver = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), desiredCapabilities);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }

@@ -1,5 +1,6 @@
 package com.meekventures.android;
 
+import lombok.extern.java.Log;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -8,11 +9,11 @@ import org.openqa.selenium.WebElement;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Log
+public class HomeMenuTest extends BaseAndroidTest {
 
-public class HomeMenuTest extends BaseAndroidTest{
-
-    private static String emailAddress = "rajmentor-KattieSchuppeGladyce.Lind99@gmail.com";
-    private static String password = "test123";
+    private static final String emailAddress = "rajmentor-KattieSchuppeGladyce.Lind99@gmail.com";
+    private static final String password = "test123";
 
     @BeforeEach()
     public void resetAppBefore() {
@@ -29,6 +30,7 @@ public class HomeMenuTest extends BaseAndroidTest{
         WebElement email = driver.findElement(By.id("edtEmail"));
         assertThat(email.isDisplayed()).as("email input should be displayed").isTrue();
         email.sendKeys(emailAddress);
+        log.info("email input is displayed");
 
         WebElement passwordInput = driver.findElement(By.id("edtPassword"));
         passwordInput.sendKeys(password);
