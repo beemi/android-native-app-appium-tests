@@ -1,6 +1,7 @@
 package com.meekventures.android;
 
 import lombok.extern.java.Log;
+import lombok.val;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,47 +28,54 @@ public class HomeMenuTest extends BaseAndroidTest {
 
     @Test
     public void home_screen_tests() {
-        WebElement email = driver.findElement(By.id("edtEmail"));
+        val email = driver.findElement(By.id("edtEmail"));
         assertThat(email.isDisplayed()).as("email input should be displayed").isTrue();
         email.sendKeys(emailAddress);
         log.info("email input is displayed");
 
-        WebElement passwordInput = driver.findElement(By.id("edtPassword"));
+        val passwordInput = driver.findElement(By.id("edtPassword"));
         passwordInput.sendKeys(password);
         driver.hideKeyboard();
+        log.info("password input is displayed");
 
-        WebElement keepMeLoggedIn = driver.findElement(By.id("checkBoxLogin"));
+        val keepMeLoggedIn = driver.findElement(By.id("checkBoxLogin"));
         keepMeLoggedIn.click();
+        log.info("keep me logged in checkbox is displayed");
 
         WebElement loginButton = driver.findElement(By.xpath("//*[@text='Login']"));
         loginButton.click();
+        log.info("login button is displayed and clicked");
 
         WebElement menuStartups = driver.findElement(By.id("startupConstraint"));
         assertThat(menuStartups.isDisplayed()).as("Login is not successful").isTrue();
         menuStartups.click();
+        log.info("startup menu is displayed and clicked");
 
         driver.findElement(By.id("topUsersLay")).isDisplayed();
+        log.info("startup menu is displayed");
 
         driver.findElement(By.id("imgBack")).click();
 
-        WebElement menuMentors = driver.findElement(By.id("mentorConstraint"));
+        val menuMentors = driver.findElement(By.id("mentorConstraint"));
         assertThat(menuStartups.isDisplayed()).isTrue();
         menuMentors.click();
+        log.info("mentor menu is displayed and clicked");
 
         driver.findElement(By.id("topUsersLay")).isDisplayed();
         driver.findElement(By.id("imgBack")).click();
 
-        WebElement menuInvestors = driver.findElement(By.id("investorConstraint"));
+        val menuInvestors = driver.findElement(By.id("investorConstraint"));
         menuInvestors.click();
         driver.findElement(By.id("topUsersLay")).isDisplayed();
         driver.findElement(By.id("imgBack")).click();
+        log.info("investor menu is displayed and clicked");
 
-        WebElement menuEvents = driver.findElement(By.id("eventsConstraint"));
+        val menuEvents = driver.findElement(By.id("eventsConstraint"));
         menuEvents.click();
         driver.findElement(By.id("relMessage")).isDisplayed();
         driver.findElement(By.id("imgBack")).click();
 
-        WebElement menuSocieties = driver.findElement(By.id("societiesConstraint"));
+        val menuSocieties = driver.findElement(By.id("societiesConstraint"));
         menuSocieties.click();
         driver.findElement(By.id("imgAddSociety")).isDisplayed();
         driver.findElement(By.id("imgBack")).click();
