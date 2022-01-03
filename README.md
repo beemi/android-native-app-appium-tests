@@ -1,5 +1,11 @@
 #Android-appium-tests
 
+## Run tests
+
+```shell
+gradle clean test
+```
+
 # Inspect elements of the app
 
 ![Alt text](docs/img.png)
