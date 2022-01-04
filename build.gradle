@@ -5,12 +5,10 @@ plugins {
 
 allure {
     autoconfigure = true
-    version = '2.17.2'  // Latest Allure Version
-
+    version = '2.17.2'
     useJUnit5 {
-        version = '2.17.2' // Latest Allure Version
+        version = '2.17.2'
     }
-
 }
 
 group 'org.example'
@@ -27,9 +25,6 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
     implementation 'io.appium:java-client:7.6.0'
     testImplementation("org.assertj:assertj-core:3.21.0")
-
-    implementation 'org.slf4j:slf4j-api:2.0.0-alpha5'
-
     // Lombook
     implementation "org.projectlombok:lombok:${lombokVersion}"
     annotationProcessor "org.projectlombok:lombok:${lombokVersion}"

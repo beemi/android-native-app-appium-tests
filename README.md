@@ -7,6 +7,10 @@ gradle clean test
 ```
 
 ```shell
+allure generate build/allure-results
+```
+
+```shell
 ./gradlew allureServe
 ```
 
