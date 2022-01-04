@@ -6,6 +6,10 @@
 gradle clean test
 ```
 
+```shell
+./gradlew allureServe
+```
+
 # :gear: Inspect elements of the app
 
 ![Alt text](docs/img_4.png)

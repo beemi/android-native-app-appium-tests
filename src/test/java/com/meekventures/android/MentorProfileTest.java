@@ -1,6 +1,7 @@
 package com.meekventures.android;
 
 import io.appium.java_client.android.AndroidElement;
+import io.qameta.allure.*;
 import lombok.extern.java.Log;
 import lombok.val;
 import org.junit.jupiter.api.AfterEach;
@@ -13,6 +14,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Log
+@Epic("Mentor Profile")
+@Feature("Mentor Profile update & job apply")
 public class MentorProfileTest extends BaseAndroidTest {
 
     private static final String emailAddress = "rajmentor-KattieSchuppeGladyce.Lind99@gmail.com";
@@ -184,6 +187,8 @@ public class MentorProfileTest extends BaseAndroidTest {
     }
 
     @Test
+    @Description("Mentor apply job test")
+    @Severity(SeverityLevel.BLOCKER)
     public void mentor_apply_job_test() {
         val jobMenu = driver.findElement(By.id("job"));
         assertThat(jobMenu.isDisplayed()).as("job menu should be displayed").isTrue();
