@@ -1,32 +1,26 @@
 package com.meekventures.android;
 
-import com.meekventures.android.testutils.PropertyReader;
 import io.appium.java_client.android.AndroidElement;
 import lombok.extern.java.Log;
 import lombok.val;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.util.ArrayList;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Log
 public class EventsTest extends BaseAndroidTest {
 
-    WebDriverWait wait = new WebDriverWait(driver, 30);
-
     @BeforeEach()
     public void resetAppBefore() throws Exception {
-        val propertyReaders = new PropertyReader();
 
-        val emailAddress = propertyReaders.getProperty("mentor.email");
-        val password = propertyReaders.getProperty("meek_test.password");
-
-        driver.resetApp();
+        val emailAddress = propertyReader.getProperty("mentor.email");
+        val password = propertyReader.getProperty("meek_test.password");
 
         val email = driver.findElement(By.id("edtEmail"));
         assertThat(email.isDisplayed()).as("email input should be displayed").isTrue();
@@ -131,7 +125,6 @@ public class EventsTest extends BaseAndroidTest {
     }
 
     @Test
-    @Disabled
     public void filter_free_events_register_test() throws InterruptedException {
         assertThat(driver.findElementById("imgFilter").isDisplayed()).as("filter option should be displayed").isTrue();
         driver.findElementById("imgFilter").click();
@@ -224,7 +217,6 @@ public class EventsTest extends BaseAndroidTest {
     }
 
     @Test
-    @Disabled
     public void filter_paid_events_register_test() throws InterruptedException {
 
         assertThat(driver.findElementById("imgFilter").isDisplayed()).as("filter option should be displayed").isTrue();
@@ -243,7 +235,7 @@ public class EventsTest extends BaseAndroidTest {
                 ExpectedConditions.visibilityOfElementLocated(By.id("tvFilter"))
         ));
         assertThat(driver.findElementById("tvFilter").isDisplayed()).as("filter option should be displayed").isTrue();
-        assertThat(driver.findElementById("tvFilter").getText()).as("filter option should be enabled").isEqualTo("Free Events");
+        assertThat(driver.findElementById("tvFilter").getText()).as("filter option should be enabled").isEqualTo("Paid Events");
         Thread.sleep(8000);
 
         val paidPricesEvents =  driver.findElementsById("tvPrice");
