@@ -1,5 +1,6 @@
 package com.meekventures.android;
 
+import com.meekventures.android.testutils.TestUtils;
 import io.appium.java_client.android.AndroidElement;
 import lombok.extern.java.Log;
 import lombok.val;

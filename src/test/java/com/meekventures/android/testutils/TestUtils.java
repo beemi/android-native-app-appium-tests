@@ -1,5 +1,6 @@
-package com.meekventures.android;
+package com.meekventures.android.testutils;
 
+import com.meekventures.android.BaseAndroidTest;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 

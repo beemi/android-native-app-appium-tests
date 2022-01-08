@@ -1,29 +1,31 @@
 package com.meekventures.android;
 
+import com.meekventures.android.testutils.PropertyReader;
 import io.appium.java_client.android.AndroidElement;
 import lombok.extern.java.Log;
 import lombok.val;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.ArrayList;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Log
 public class EventsTest extends BaseAndroidTest {
 
-    private static final String emailAddress = "rajmentor-KattieSchuppeGladyce.Lind99@gmail.com";
-    private static final String password = "test123";
-
     WebDriverWait wait = new WebDriverWait(driver, 30);
 
     @BeforeEach()
-    public void resetAppBefore() {
+    public void resetAppBefore() throws Exception {
+        val propertyReaders = new PropertyReader();
+
+        val emailAddress = propertyReaders.getProperty("mentor.email");
+        val password = propertyReaders.getProperty("meek_test.password");
+
         driver.resetApp();
 
         val email = driver.findElement(By.id("edtEmail"));
@@ -65,7 +67,6 @@ public class EventsTest extends BaseAndroidTest {
     }
 
     @Test
-    @Disabled
     public void register_event_test() {
         val numberOfEvents = driver.findElementsById("nameTv");
         assertThat(numberOfEvents.size()).isGreaterThan(0);
@@ -118,6 +119,11 @@ public class EventsTest extends BaseAndroidTest {
         val saveButton = driver.findElementById("btnAdd");
         assertThat(saveButton.isDisplayed()).as("save button should be displayed").isTrue();
         saveButton.click();
+
+        wait.until(ExpectedConditions.or(
+                ExpectedConditions.visibilityOfElementLocated(By.id("relDone"))
+        ));
+        assertThat(driver.findElementById("relDone").isDisplayed()).as("done button should be displayed").isTrue();
 
         val nextButton = driver.findElementById("btnRegister");
         assertThat(nextButton.isEnabled()).as("next button should be enabled").isTrue();
@@ -218,6 +224,7 @@ public class EventsTest extends BaseAndroidTest {
     }
 
     @Test
+    @Disabled
     public void filter_paid_events_register_test() throws InterruptedException {
 
         assertThat(driver.findElementById("imgFilter").isDisplayed()).as("filter option should be displayed").isTrue();
