@@ -25,6 +25,7 @@ public class HomeBasicTest {
     private static final String APP_PACKAGE = "com.meekventures.meek";
     private static final String DEVICE_NAME = "Pixel XL API 30";
     private static final String PLATFORM_NAME = "Android";
+
     private static String emailAddress = "rajmentor-KattieSchuppeGladyce.Lind99@gmail.com";
     private static String password = "test123";
 

@@ -14,12 +14,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Log
 public class ForgotPasswordTest extends BaseAndroidTest {
 
-    WebDriverWait wait = new WebDriverWait(driver, 10);
 
     @BeforeEach()
     public void resetAppBefore() {
         driver.resetApp();
-
     }
 
     @AfterEach

@@ -18,14 +18,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Feature("Mentor Profile update & job apply")
 public class MentorProfileTest extends BaseAndroidTest {
 
-    private static final String emailAddress = "rajmentor-KattieSchuppeGladyce.Lind99@gmail.com";
-    private static final String password = "test123";
-
-    WebDriverWait wait = new WebDriverWait(driver, 30);
-
     @BeforeEach()
-    public void resetAppBefore() {
+    public void resetAppBefore() throws Exception {
         driver.resetApp();
+
+        val emailAddress = propertyReader.getProperty("mentor.email");
+        val password = propertyReader.getProperty("meek_test.password");
 
         val email = driver.findElement(By.id("edtEmail"));
         assertThat(email.isDisplayed()).as("email input should be displayed").isTrue();

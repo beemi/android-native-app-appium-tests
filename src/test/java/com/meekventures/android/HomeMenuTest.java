@@ -15,11 +15,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Log
 public class HomeMenuTest extends BaseAndroidTest {
 
-    private static final String emailAddress = "rajmentor-KattieSchuppeGladyce.Lind99@gmail.com";
-    private static final String password = "test123";
-
-    WebDriverWait wait = new WebDriverWait(driver, 30);
-
     @BeforeEach()
     public void resetAppBefore() {
         driver.resetApp();
@@ -31,7 +26,10 @@ public class HomeMenuTest extends BaseAndroidTest {
     }
 
     @Test
-    public void home_screen_tests() {
+    public void home_screen_tests() throws Exception {
+        val emailAddress = propertyReader.getProperty("student.email");
+        val password = propertyReader.getProperty("meek_test.password");
+
         val email = driver.findElement(By.id("edtEmail"));
         assertThat(email.isDisplayed()).as("email input should be displayed").isTrue();
         email.sendKeys(emailAddress);
