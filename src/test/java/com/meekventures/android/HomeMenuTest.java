@@ -7,6 +7,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -15,6 +17,8 @@ public class HomeMenuTest extends BaseAndroidTest {
 
     private static final String emailAddress = "rajmentor-KattieSchuppeGladyce.Lind99@gmail.com";
     private static final String password = "test123";
+
+    WebDriverWait wait = new WebDriverWait(driver, 30);
 
     @BeforeEach()
     public void resetAppBefore() {
@@ -70,8 +74,13 @@ public class HomeMenuTest extends BaseAndroidTest {
         driver.findElement(By.id("imgBack")).click();
         log.info("investor menu is displayed and clicked");
 
-        val menuEvents = driver.findElement(By.id("eventsConstraint"));
+        val menuEvents = driver.findElement(By.id("events"));
+        assertThat(menuEvents.isDisplayed()).isTrue();
         menuEvents.click();
+        wait.until(ExpectedConditions.or(
+                ExpectedConditions.visibilityOfElementLocated(By.id("addNewEvent"))
+        ));
+
         driver.findElement(By.id("relMessage")).isDisplayed();
         driver.findElement(By.id("imgBack")).click();
 

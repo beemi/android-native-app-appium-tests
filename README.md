@@ -8,6 +8,7 @@ Appium Android Native app test framework.
 * Appium - Mobile Automation library
 * Gradle -  Build automation tool
 * Java - Programming language
+* lombok - Java library
 * Junit5 - Test Management library
 * Bitrise - CI/CD
 

@@ -11,7 +11,7 @@ import java.net.URL;
 public class BaseAndroidTest {
 
     protected static AndroidDriver driver;
-    private static final String APK_PATH = System.getProperty("user.dir") + "/src/test/resources/apps/beta/eaa7eddf-b305-4151-b298-cb7ca5079fb1.apk";
+    private static final String APK_PATH = System.getProperty("user.dir") + "/src/test/resources/apps/beta/meek-debug.apk";
     private static final String APP_PACKAGE = "com.meekventures.meek";
     private static final String DEVICE_NAME = "Pixel XL API 30";
     private static final String PLATFORM_NAME = "Android";
