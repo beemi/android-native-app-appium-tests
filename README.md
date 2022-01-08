@@ -1,5 +1,16 @@
 # Android-appium-tests
 
+Appium Android Native app test framework.
+
+
+# Technologies/Tools used in building the framework
+* Intellij -IDE
+* Appium - Mobile Automation library
+* Gradle -  Build automation tool
+* Java - Programming language
+* Junit5 - Test Management library
+* Bitrise - CI/CD
+
 ## :gear: Run tests
 
 ```shell
